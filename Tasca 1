@@ -1,3 +1,35 @@
 def alphabet_list():
     alphabet_chars = [chr(i) for i in range(ord('a'), ord('z')+1)]
     return [str(char) for char in alphabet_chars]
+def new_pos(x, n, malphabet):
+    # Calculamos la nueva posición aplicando el cifrado César
+    new_position = (x + n) % malphabet
+    return new_position
+def old_pos(x, n, malphabet):
+    old_position = (x - n) % malphabet
+    return old_position
+def encrypt_cesar(s, n, alphabet):
+    char_to_pos = {char: i for i, char in enumerate(alphabet)}
+    encrypted_text = ""
+    for char in s:
+        if char in alphabet:
+            old_position = char_to_pos[char]
+            new_position = (old_position + n) % len(alphabet)
+            encrypted_char = alphabet[new_position]
+            encrypted_text += encrypted_char
+        else:
+            encrypted_text += char   
+    return encrypted_text
+def decrypt_cesar(s, n, alphabet):
+    char_to_pos = {char: i for i, char in enumerate(alphabet)}
+    decrypted_text = ""
+    for char in s:
+        if char in alphabet:
+            old_position = char_to_pos[char]
+            new_position = (old_position - n) % len(alphabet)
+            decrypted_char = alphabet[new_position]
+            decrypted_text += decrypted_char
+        else:
+            decrypted_text += char   
+    return decrypted_text
+
