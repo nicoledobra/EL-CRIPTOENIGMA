@@ -33,3 +33,16 @@ def decrypt_cesar(s, n, alphabet):
             decrypted_text += char   
     return decrypted_text
 
+def encrypt_monoalfabetic(s, kw, alphabet):
+    key = list(kw)
+    char_to_pos = {char: i for i, char in enumerate(key)}
+
+    encrypted_text = ""
+    for char in s:
+        if char in alphabet:
+            pos = char_to_pos[char]
+            encrypted_text += alphabet[(pos + len(alphabet)) % len(alphabet)]
+        else:
+            encrypted_text += char
+    return encrypted_text
+
