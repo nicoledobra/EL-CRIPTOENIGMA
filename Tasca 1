@@ -46,3 +46,11 @@ def encrypt_monoalfabetic(s, kw, alphabet):
             encrypted_text += char
     return encrypted_text
 
+def encrypt_monoalfabetic(s, kw, l):
+    result = ""
+    alphabet = new_alphabet(l, kw)
+    for letter in s:
+        pos = l.index(letter)
+        result = result + alphabet[pos]
+    return result
+
